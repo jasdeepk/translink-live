@@ -1,15 +1,20 @@
 // src/reducers/index.tsx
 
-import { EnthusiasmAction } from '../actions';
-import { DECREMENT_ENTHUSIASM, INCREMENT_ENTHUSIASM } from '../constants/index';
+import { ViewportAction } from '../actions';
+import * as constants from '../constants'
 import { IStoreState } from '../types/index';
 
-export function enthusiasm(state: IStoreState, action: EnthusiasmAction): IStoreState {
-  switch (action.type) {
-    case INCREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: state.enthusiasmLevel + 1 };
-    case DECREMENT_ENTHUSIASM:
-      return { ...state, enthusiasmLevel: Math.max(1, state.enthusiasmLevel - 1) };
+export function storeUpdatedViewport(state: IStoreState, action: ViewportAction): IStoreState {
+  switch(action.type) {
+    case constants.CHANGE_VIEWPORT:
+      return {
+        ...state, 
+        height: action.height, 
+        width: action.width, 
+        latitude: action.latitude, 
+        longitude: action.longitude, 
+        zoom: action.zoom
+      }
   }
   return state;
 }

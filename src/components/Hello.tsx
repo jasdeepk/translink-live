@@ -1,41 +1,43 @@
 // src/components/Hello.tsx
 
 import * as React from 'react';
+import * as MapGl from 'react-map-gl'
 import './Hello.css'
 
-export interface IProps {
-    name: string;
-    enthusiasmLevel?: number;
-    onIncrement?: () => void;
-    onDecrement?: () => void;
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiamFzZGVlcGsiLCJhIjoiY2pnMzVyMGprMXoxMzJ4bnk5d2k2anFiYSJ9.YZhsNX2-Chp9N95Au0DIhw';
+
+export interface IViewport {
+  height:number;
+  latitude:number;
+  longitude:number;
+  width:number;
+  zoom:number;
 }
 
-const REACT_VERSION = React.version;
-function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement}: IProps) {
-    if (enthusiasmLevel <= 0) {
-        throw new Error('You could be a little more enthusiastic. :D');
-    }
+export interface IProps {
+    height:number;
+    latitude:number;
+    longitude:number;
+    width:number;
+    zoom:number;
+    onViewportChange?: (viewport: IViewport) => void;
+  }
 
+function Map({height, latitude, longitude, width, zoom, onViewportChange}: IProps) {
     return (
-        <div className="hello">
-          <div className="greeting">
-            Hello {name + getExclamationMarks(enthusiasmLevel)}
-      </div>
-      <div>
-          <button onClick={onDecrement}>-</button>
-          <button onClick={onIncrement}>+</button>
-      </div>
-
-    <div>React version: {REACT_VERSION}</div>
+    <div className="Map">
+    <MapGl.InteractiveMap
+        height={height}
+        latitude={latitude}
+        longitude={longitude}
+        width={width}
+        zoom={zoom}
+        mapboxApiAccessToken={MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/jasdeepk/cjg36nl0uiuhb2srvxudn22nm" 
+        onViewportChange={onViewportChange}
+       />
     </div>
-
     );
 }
 
-export default Hello;
-
-// helpers
-
-function getExclamationMarks(numChars: number) {
-    return Array(numChars + 1).join('!');
-}
+export default Map;

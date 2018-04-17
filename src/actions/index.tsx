@@ -1,23 +1,23 @@
 import * as constants from '../constants'
 
-export interface IIncrementEnthusiasm {
-    type: constants.INCREMENT_ENTHUSIASM;
+export interface IChangeViewport {
+    type: constants.CHANGE_VIEWPORT;
+    height:number;
+    latitude:number;
+    longitude:number;
+    width:number;
+    zoom:number;
 }
 
-export interface IDecrementEnthusiasm {
-    type: constants.DECREMENT_ENTHUSIASM;
-}
+export type ViewportAction = IChangeViewport;
 
-export type EnthusiasmAction = IIncrementEnthusiasm | IDecrementEnthusiasm;
-
-export function incrementEnthusiasm(): IIncrementEnthusiasm {
+export function changeViewport(height:number, latitude:number, longitude:number, width:number, zoom:number): IChangeViewport {
     return {
-        type: constants.INCREMENT_ENTHUSIASM
-    }
-}
-
-export function decrementEnthusiasm(): IDecrementEnthusiasm {
-    return {
-        type: constants.DECREMENT_ENTHUSIASM
+        type: constants.CHANGE_VIEWPORT,
+        height,
+        latitude,
+        longitude,
+        width,
+        zoom,
     }
 }

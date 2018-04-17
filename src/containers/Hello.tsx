@@ -1,23 +1,29 @@
 // src/containers/Hello.tsx
 
 import { connect, Dispatch } from 'react-redux';
-import Hello from '../components/Hello';
+import Map, { IViewport } from '../components/Hello';
 import { IStoreState } from '../types/index';
 
 import * as actions from '../actions/';
 
-export function mapStateToProps({ enthusiasmLevel, languageName }: IStoreState) {
+export function mapStateToProps({ height, latitude, longitude, width, zoom }: IStoreState) {
   return {
-    enthusiasmLevel,
-    name: languageName,
+    height, latitude, longitude, width, zoom 
   }
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<actions.ViewportAction>) {
   return {
-    onDecrement: () => dispatch(actions.decrementEnthusiasm()),
-    onIncrement: () => dispatch(actions.incrementEnthusiasm()),
+    onViewportChange: (viewport: IViewport) => dispatch(
+      actions.changeViewport(
+        viewport.height,
+        viewport.latitude,
+        viewport.longitude,
+        viewport.width,
+        viewport.zoom
+      )
+    ),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Hello);
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

@@ -1,6 +1,9 @@
 // src/types/index.tsx
 
 export interface IStoreState {
-    languageName: string;
-    enthusiasmLevel: number;
+    height:number;
+    latitude:number;
+    longitude:number;
+    width:number;
+    zoom:number;
 }
