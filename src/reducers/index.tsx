@@ -10,9 +10,9 @@ export function storeUpdatedViewport(state: IStoreState, action: ViewportAction)
       return {
         ...state, 
         height: action.height, 
-        width: action.width, 
         latitude: action.latitude, 
         longitude: action.longitude, 
+        width: action.width, 
         zoom: action.zoom
       }
   }

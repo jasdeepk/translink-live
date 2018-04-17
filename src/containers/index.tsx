@@ -1,7 +1,7 @@
-// src/containers/Hello.tsx
+// src/containers/index.tsx
 
 import { connect, Dispatch } from 'react-redux';
-import Map, { IViewport } from '../components/Hello';
+import Map, { IViewport } from '../components/Map';
 import { IStoreState } from '../types/index';
 
 import * as actions from '../actions/';

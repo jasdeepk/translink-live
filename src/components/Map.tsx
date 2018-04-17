@@ -1,8 +1,8 @@
-// src/components/Hello.tsx
+// src/components/Map.tsx
 
 import * as React from 'react';
 import * as MapGl from 'react-map-gl'
-import './Hello.css'
+import './Map.css'
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiamFzZGVlcGsiLCJhIjoiY2pnMzVyMGprMXoxMzJ4bnk5d2k2anFiYSJ9.YZhsNX2-Chp9N95Au0DIhw';
 

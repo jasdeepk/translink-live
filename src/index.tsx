@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-// import * as MapGl from 'react-map-gl';
 import { createStore } from 'redux';
-import Map from './containers/Hello'
-// import Hello from './containers/Hello';
+import Map from './containers/index'
 import './index.css';
 import { storeUpdatedViewport } from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
