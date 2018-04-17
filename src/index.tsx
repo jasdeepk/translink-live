@@ -1,51 +1,105 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import Hello from './containers/Hello';
+// import { Provider } from 'react-redux';
+// import Hello from './containers/Hello';
 import './index.css';
 
-// import * as MapGl from 'react-map-gl';
-import { createStore } from 'redux';
-import { enthusiasm } from './reducers/index';
-import { IStoreState } from './types/index';
+import * as MapGl from 'react-map-gl';
+// import { createStore } from 'redux';
+// import { enthusiasm } from './reducers/index';
+import registerServiceWorker from './registerServiceWorker';
+// import { IStoreState } from './types/index';
 
-const store = createStore<IStoreState>(enthusiasm, {
-  enthusiasmLevel: 1,
-  languageName: 'TypeScript',
-});
+// const store = createStore<IStoreState>(enthusiasm, {
+//   enthusiasmLevel: 1,
+//   languageName: 'TypeScript',
+// });
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiamFzZGVlcGsiLCJhIjoiY2pnMzVyMGprMXoxMzJ4bnk5d2k2anFiYSJ9.YZhsNX2-Chp9N95Au0DIhw';
 
-// class Map extends React.Component {
+export interface IViewport {
+  height:number;
+  latitude:number;
+  longitude:number;
+  width:number;
+  zoom:number;
+}
 
-  // constructor(props: any) {
-  //   super(props);
-  //   this.state = {
-  //     viewport: {
-  //       latitude: location.latitude,
-  //       longitude: location.longitude,
-  //       zoom: 11
-  //     }
-  //   };
+// interface IMyProps {}
+export interface IProps {
+  viewport: IViewport
+}
+
+// interface IMyProps {}
+export interface IState {
+  viewport: IViewport
+}
+
+const defaultViewport = {
+  height:700,
+  latitude:49.259993,
+  longitude:-123.115060,
+  width:1000,
+  zoom:11.16,
+}
+
+export default class Map extends React.Component<IProps, IState>{
+  constructor(props: IProps) {
+  	super(props);
+  	this.state = {
+      viewport: {
+        height:700,
+        latitude:49.259993,
+        longitude:-123.115060,
+        width:1000,
+        zoom:11.16,
+      }
+  	};
+  }
+
+  // public state = {
+  //   viewport: {
+  //     height:700,
+  //     latitude:49.259993,
+  //     longitude:-123.115060,
+  //     width:1000,
+  //     zoom:11.16,
+  //   }
   // }
 
-  // public render() {
-    // return (
-      // <MapGl.Viewport
-      //   {...this.state.viewport}
-      //   // onViewportChange={this.changeViewport(viewport)}
-      //   // tslint:disable-next-line:jsx-no-lambda
-      //   // onViewportChange={(viewport : any) => this.setState({viewport})}
-      // />
-      // <MapGl.StaticMap { ...this.state.viewport } { ...this.props }/>
-    // );
-  // }
-// }
+  public render() {
+    return (
+      <div className="Map">
+      <MapGl.InteractiveMap
+        {...this.state.viewport}
+        // width={this.state.viewport.width}
+        // height={this.state.viewport.height}
+        // latitude={this.state.viewport.latitude}
+        // longitude={this.state.viewport.longitude}
+        // zoom={this.state.viewport.zoom}
+        mapboxApiAccessToken={MAPBOX_TOKEN}
+        // isDragging={true}
+        mapStyle="mapbox://styles/jasdeepk/cjg36nl0uiuhb2srvxudn22nm" 
+        onViewportChange={this.onViewportChange}
+       />
+    </div>
+    );
+  }
+
+  private onViewportChange = (viewport : IViewport) => {
+      if (viewport.longitude > 0) {
+          viewport.longitude = 0;
+      }
+      this.setState({viewport});
+  }
+}
 
 // helpers
-
+// ReactDOM.render(<Map />, document.getElementById('root'));
 ReactDOM.render(
-  // <Map />,
-  <Provider store={store}>
-    <Hello />
-  </Provider>,
-  document.getElementById('root') as HTMLElement
+  // <Provider store={store}>
+    <Map viewport={defaultViewport} />,
+    // <Hello />
+  // </Provider>,
+  document.getElementById('root')
 );
+registerServiceWorker();
