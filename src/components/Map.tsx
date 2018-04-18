@@ -25,17 +25,22 @@ export interface IProps {
 
 function Map({height, latitude, longitude, width, zoom, onViewportChange}: IProps) {
     return (
-    <div className="Map">
-    <MapGl.InteractiveMap
-        height={height}
-        latitude={latitude}
-        longitude={longitude}
-        width={width}
-        zoom={zoom}
-        mapboxApiAccessToken={MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jasdeepk/cjg36nl0uiuhb2srvxudn22nm" 
-        onViewportChange={onViewportChange}
-       />
+    <div className='col12 contain fill-navy dark inline'>
+      <div className='col12 pad2 fill-darken1 pin-left'>
+        <h1 className="title contain">Transit Live</h1>
+      </div>
+      <div className='fr quiet'>
+        <MapGl.InteractiveMap
+          height={height}
+          latitude={latitude}
+          longitude={longitude}
+          width={width}
+          zoom={zoom}
+          mapboxApiAccessToken={MAPBOX_TOKEN}
+          mapStyle="mapbox://styles/jasdeepk/cjg36nl0uiuhb2srvxudn22nm" 
+          onViewportChange={onViewportChange}
+        />
+      </div>
     </div>
     );
 }
