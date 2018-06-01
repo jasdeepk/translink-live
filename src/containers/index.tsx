@@ -6,13 +6,19 @@ import { IStoreState } from '../types/index';
 
 import * as actions from '../actions/';
 
-export function mapStateToProps({ height, latitude, longitude, width, zoom }: IStoreState) {
+export function mapStateToProps({ viewport, busRequest }: IStoreState) {
+  console.log(viewport.height);
   return {
-    height, latitude, longitude, width, zoom 
+    height:viewport.height,
+    latitude:viewport.latitude,
+    longitude:viewport.longitude,
+    width:viewport.width,
+    zoom:viewport.zoom
   }
 }
 
 export function mapDispatchToProps(dispatch: Dispatch<actions.ViewportAction>) {
+  console.log("map dispatch viewport action");
   return {
     onViewportChange: (viewport: IViewport) => dispatch(
       actions.changeViewport(

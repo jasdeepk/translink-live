@@ -1,7 +1,7 @@
 // src/components/Map.tsx
 
 import * as React from 'react';
-import * as MapGl from 'react-map-gl'
+import * as MapGl from 'react-map-gl';
 import './Map.css'
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiamFzZGVlcGsiLCJhIjoiY2pnMzVyMGprMXoxMzJ4bnk5d2k2anFiYSJ9.YZhsNX2-Chp9N95Au0DIhw';
@@ -24,6 +24,7 @@ export interface IProps {
   }
 
 function Map({height, latitude, longitude, width, zoom, onViewportChange}: IProps) {
+    console.log(height);
     return (
     <div className='col12 contain fill-navy dark inline'>
       <div className='col12 pad2 fill-darken1 pin-left'>
