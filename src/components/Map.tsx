@@ -24,7 +24,6 @@ export interface IProps {
   }
 
 function Map({height, latitude, longitude, width, zoom, onViewportChange}: IProps) {
-    console.log(height);
     return (
     <div className='col12 contain fill-navy dark inline'>
       <div className='col12 pad2 fill-darken1 pin-left'>

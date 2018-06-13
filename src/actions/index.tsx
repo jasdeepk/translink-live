@@ -13,7 +13,6 @@ export interface IChangeViewport {
 export type ViewportAction = IChangeViewport;
 
 export function changeViewport(height:number, latitude:number, longitude:number, width:number, zoom:number): IChangeViewport {
-    console.log(height);
     return {
         height,
         latitude,
@@ -54,9 +53,9 @@ export interface IRequestFrontend {
 
 export function requestBuses(buses:IRequestBus[], frontend:IRequestFrontend) : IRequestBuses {
     return {
-        type: constants.REQUEST_BUSES,
         buses,
-        frontend
+        frontend,
+        type: constants.REQUEST_BUSES
     }
 }
 

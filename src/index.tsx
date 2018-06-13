@@ -8,7 +8,7 @@ import Map from './containers/index';
 import './index.css';
 import reducer from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
-import { IStoreBus,  IStoreBusRequest, IStoreFrontend, IStoreState, IStoreViewport, defaultState } from './types/index';
+import { defaultState,  IStoreBus, IStoreBusRequest, IStoreFrontend, IStoreState, IStoreViewport } from './types/index';
 
 const TRANSLINK_URI_BASE = 'http://api.translink.ca/rttiapi/v1/buses';
 const API_KEY = 'kC9EhPUsGX9Ih8kbnBKi';
